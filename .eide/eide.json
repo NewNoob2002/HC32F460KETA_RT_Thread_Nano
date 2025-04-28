@@ -1,0 +1,521 @@
+{
+  "name": "HC32F460",
+  "type": "ARM",
+  "dependenceList": [],
+  "srcDirs": [],
+  "virtualFolder": {
+    "name": "<virtual_root>",
+    "files": [],
+    "folders": [
+      {
+        "name": "common",
+        "files": [
+          {
+            "path": "MDK/startup_hc32f460.s"
+          },
+          {
+            "path": "common/system_hc32f460.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "source",
+        "files": [
+          {
+            "path": "source/main.cpp"
+          },
+          {
+            "path": "rt-thread/bsp/board.c"
+          },
+          {
+            "path": "source/src/usart.c"
+          },
+          {
+            "path": "source/src/Led.cpp"
+          },
+          {
+            "path": "source/src/Key.cpp"
+          },
+          {
+            "path": "source/src/Task.cpp"
+          },
+          {
+            "path": "source/src/Begin.cpp"
+          },
+          {
+            "path": "source/src/Charger.cpp"
+          },
+          {
+            "path": "source/src/Fuelgauge.cpp"
+          },
+          {
+            "path": "source/src/powerControl.cpp"
+          },
+          {
+            "path": "source/include/debug.h"
+          },
+          {
+            "path": "source/include/global.h"
+          },
+          {
+            "path": "source/include/mcu_define.h"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "core",
+        "files": [
+          {
+            "path": "arduino/cores/arduino/abi.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/drivers/usart/Usart.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/drivers/usart/usart_config.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/drivers/usart/usart_sync.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/new.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/Print.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/Stream.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/WInterrupts.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/wiring_analog.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/wiring_digital.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/WMath.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/WString.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/drivers/adc/adc.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/drivers/adc/adc_config.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/drivers/gpio/addon_gpio.c"
+          },
+          {
+            "path": "arduino/cores/arduino/drivers/irqn/irqn.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/drivers/panic/ddl_assert.c"
+          },
+          {
+            "path": "arduino/cores/arduino/drivers/panic/panic.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/drivers/timera/timera_config.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/drivers/sysclock/systick.cpp"
+          },
+          {
+            "path": "arduino/variants/generic_hc32f460/variant.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/itoa.c"
+          },
+          {
+            "path": "arduino/cores/arduino/yield.c"
+          },
+          {
+            "path": "arduino/cores/arduino/delay.c"
+          },
+          {
+            "path": "arduino/cores/arduino/wiring_shift.c"
+          },
+          {
+            "path": "arduino/cores/arduino/avr/dtostrf.c"
+          },
+          {
+            "path": "arduino/cores/arduino/drivers/sysclock/sysclock.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/drivers/sysclock/sysclock_util.cpp"
+          },
+          {
+            "path": "arduino/cores/arduino/IPAddress.cpp"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "driver",
+        "files": [
+          {
+            "path": "driver/src/hc32f460_pwc.c"
+          },
+          {
+            "path": "driver/src/hc32f460_efm.c"
+          },
+          {
+            "path": "driver/src/hc32f460_icg.c"
+          },
+          {
+            "path": "driver/src/hc32f460_interrupts.c"
+          },
+          {
+            "path": "driver/src/hc32f460_utility.c"
+          },
+          {
+            "path": "driver/src/hc32f460_usart.c"
+          },
+          {
+            "path": "driver/src/hc32f460_keyscan.c"
+          },
+          {
+            "path": "driver/src/hc32f460_gpio.c"
+          },
+          {
+            "path": "driver/src/hc32f460_clk.c"
+          },
+          {
+            "path": "driver/src/hc32f460_exint_nmi_swi.c"
+          },
+          {
+            "path": "driver/src/hc32f460_adc.c"
+          },
+          {
+            "path": "driver/src/hc32f460_timera.c"
+          },
+          {
+            "path": "driver/src/hc32f460_rmu.c"
+          },
+          {
+            "path": "driver/src/hc32f460_timer0.c"
+          },
+          {
+            "path": "driver/src/hc32f460_i2c.c"
+          },
+          {
+            "path": "driver/src/hc32f460_dmac.c"
+          },
+          {
+            "path": "driver/src/hc32f460_spi.c"
+          },
+          {
+            "path": "driver/src/hc32f460_sram.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "rtthread",
+        "files": [],
+        "folders": [
+          {
+            "name": "libcpu",
+            "files": [
+              {
+                "path": "rt-thread/libcpu/arm/cortex-m4/context_rvds.S"
+              },
+              {
+                "path": "rt-thread/libcpu/arm/cortex-m4/cpuport.c"
+              }
+            ],
+            "folders": []
+          },
+          {
+            "name": "src",
+            "files": [
+              {
+                "path": "rt-thread/src/clock.c"
+              },
+              {
+                "path": "rt-thread/src/components.c"
+              },
+              {
+                "path": "rt-thread/src/cpu.c"
+              },
+              {
+                "path": "rt-thread/src/idle.c"
+              },
+              {
+                "path": "rt-thread/src/ipc.c"
+              },
+              {
+                "path": "rt-thread/src/irq.c"
+              },
+              {
+                "path": "rt-thread/src/kservice.c"
+              },
+              {
+                "path": "rt-thread/src/mem.c"
+              },
+              {
+                "path": "rt-thread/src/memheap.c"
+              },
+              {
+                "path": "rt-thread/src/mempool.c"
+              },
+              {
+                "path": "rt-thread/src/object.c"
+              },
+              {
+                "path": "rt-thread/src/scheduler.c"
+              },
+              {
+                "path": "rt-thread/src/slab.c"
+              },
+              {
+                "path": "rt-thread/src/thread.c"
+              },
+              {
+                "path": "rt-thread/src/timer.c"
+              }
+            ],
+            "folders": []
+          }
+        ]
+      },
+      {
+        "name": "library",
+        "files": [
+          {
+            "path": "arduino/libraries/Timer0/src/timer0_config.cpp"
+          },
+          {
+            "path": "arduino/libraries/Timer0/src/Timer0.cpp"
+          },
+          {
+            "path": "arduino/libraries/HardwareI2c/src/HardwareI2C.cpp"
+          },
+          {
+            "path": "arduino/libraries/SoftwareI2c/src/SoftI2C.cpp"
+          },
+          {
+            "path": "arduino/libraries/EnhancedButton/src/EnhancedButton.cpp"
+          }
+        ],
+        "folders": []
+      }
+    ]
+  },
+  "outDir": "build",
+  "deviceName": "HC32F460JETA",
+  "packDir": ".pack/HDSC/HC32F460.1.0.12",
+  "miscInfo": {
+    "uid": "c398f6db80c31482681bc6f7e37b43aa"
+  },
+  "targets": {
+    "HC32": {
+      "excludeList": [],
+      "toolchain": "AC6",
+      "compileConfig": {
+        "cpuType": "Cortex-M4",
+        "floatingPointHardware": "single",
+        "scatterFilePath": "MDK/linker/HC32F460xE.sct",
+        "useCustomScatterFile": true,
+        "storageLayout": {
+          "RAM": [
+            {
+              "tag": "RAM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            },
+            {
+              "tag": "RAM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            },
+            {
+              "tag": "RAM",
+              "id": 3,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            },
+            {
+              "tag": "IRAM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x1fff8000",
+                "size": "0x2f000"
+              },
+              "isChecked": true,
+              "noInit": false
+            },
+            {
+              "tag": "IRAM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x200f0000",
+                "size": "0x1000"
+              },
+              "isChecked": false,
+              "noInit": false
+            }
+          ],
+          "ROM": [
+            {
+              "tag": "ROM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            },
+            {
+              "tag": "ROM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            },
+            {
+              "tag": "ROM",
+              "id": 3,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            },
+            {
+              "tag": "IROM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x80000"
+              },
+              "isChecked": true,
+              "isStartup": true
+            },
+            {
+              "tag": "IROM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x3000c00",
+                "size": "0x3fc"
+              },
+              "isChecked": false,
+              "isStartup": false
+            }
+          ]
+        },
+        "options": "null"
+      },
+      "uploader": "JLink",
+      "uploadConfig": {
+        "bin": "",
+        "baseAddr": "",
+        "cpuInfo": {
+          "vendor": "XHSC",
+          "cpuName": "HC32F460xE"
+        },
+        "proType": 1,
+        "speed": 8000,
+        "otherCmds": ""
+      },
+      "uploadConfigMap": {},
+      "custom_dep": {
+        "name": "default",
+        "incList": [
+          ".",
+          "common",
+          "core/CMSIS/Include",
+          "driver/inc",
+          "source",
+          "source/include",
+          "rt-thread/bsp",
+          "rt-thread/components/finsh",
+          "rt-thread/include",
+          "rt-thread/include/libc",
+          "arduino",
+          "arduino/cores/arduino",
+          "arduino/cores/arduino/avr",
+          "arduino/variants/generic_hc32f460",
+          "arduino/cores/arduino/drivers/usart",
+          "arduino/cores/arduino/drivers/gpio",
+          "arduino/cores/arduino/drivers/adc",
+          "arduino/cores/arduino/drivers/irqn",
+          "arduino/cores/arduino/drivers/panic",
+          "arduino/cores/arduino/drivers/timera",
+          "arduino/cores/arduino/drivers/sysclock",
+          "arduino/libraries/HardwareI2c/src",
+          "arduino/libraries/SoftwareI2c/src",
+          "arduino/libraries/Timer0/src",
+          "arduino/libraries/EnhancedButton/src",
+          ".cmsis/include",
+          "MDK/RTE/_HC32"
+        ],
+        "libList": [],
+        "defineList": [
+          "__DEBUG",
+          "HC32F460",
+          "USE_DEVICE_DRIVER_LIB",
+          "__CORE_DEBUG",
+          "ARDUINO"
+        ]
+      },
+      "builderOptions": {
+        "AC6": {
+          "version": 3,
+          "beforeBuildTasks": [],
+          "afterBuildTasks": [],
+          "global": {
+            "use-microLIB": false,
+            "output-debug-info": "enable"
+          },
+          "c/cpp-compiler": {
+            "optimization": "level-1",
+            "language-c": "c11",
+            "language-cpp": "c++11",
+            "link-time-optimization": false,
+            "one-elf-section-per-function": true,
+            "short-enums#wchar": true,
+            "warnings": "ac5-like-warnings"
+          },
+          "asm-compiler": {
+            "$use": "asm-auto"
+          },
+          "linker": {
+            "output-format": "elf",
+            "misc-controls": "--diag_suppress=L6329",
+            "xo-base": "",
+            "ro-base": "0x00000000",
+            "rw-base": "0x1FFF8000"
+          }
+        }
+      }
+    }
+  },
+  "version": "3.5"
+}
