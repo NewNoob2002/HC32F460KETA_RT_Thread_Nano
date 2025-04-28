@@ -1,5 +1,7 @@
 // #include "hc32_ddl.h"
+#include "Begin.h"
 #include "global.h"
+#include "powerControl.h"
 #include "settings.h"
 // #include "Arduino.h"
 
@@ -393,9 +395,33 @@ static en_result_t Slave_Initialize(void)
  ******************************************************************************/
 int32_t main(void)
 {
-    //ledInit();
-    pinMode(PB14, OUTPUT);
+    // ledInit();
+    PowerControlInit();
+    unsigned short reg_value = *((unsigned short *)0x400540C0UL);
+    if (reg_value & 0x0100U) {
+        LOG_INFO("Software reset");
+        Power_Control_Pin_Switch(1);
+    } else if (reg_value & 0x0002U) {
+        LOG_INFO("EWDT or Hardware reset");
+    } else if (reg_value & 0x2000U) {
+        LOG_ERROR("XTAL error");
+    }
+    ledInit();
     keyInit();
+    // ChargerControlInit();
+    // I2cBegin();
+    // Bq40z50Begin();
+
+    // while (1) {
+    //     if (reg_value & 0x0100U)
+    //         break;
+    //     if (PowerKeyTrigger >= 2)
+    //         break;
+    //     if (millis() - lastPowerOnTime > 1000) {
+    //         lastPowerOnTime = millis();
+    //         ChargeingStateCheck();
+    //     }
+    // }
     memset(&DisplayPannelParameter, 0, sizeof(SystemParameter));
     memcpy(DisplayPannelParameter.hw_version, HW_VERSION, strlen(HW_VERSION));
     memcpy(DisplayPannelParameter.sw_version, SW_VERSION, strlen(SW_VERSION));

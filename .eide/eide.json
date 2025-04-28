@@ -60,6 +60,9 @@
           },
           {
             "path": "source/include/mcu_define.h"
+          },
+          {
+            "path": "source/src/system.cpp"
           }
         ],
         "folders": []

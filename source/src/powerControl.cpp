@@ -1,6 +1,10 @@
-#include "powerControl.h"
-#include "global.h"
+#include "debug.h"
 #include "AdcExpand.h"
+#include "led.h"
+#include "Charger.h"
+#include "settings.h"
+
+#include "powerControl.h"
 // local variable
 static unsigned int voltage = 0;
 /* ADC reference voltage. The voltage of pin VREFH. */
@@ -17,6 +21,28 @@ unsigned int PowerOffFlag = 0;
 // 采样时间数组
 uint8_t au8SampTime[1] = {100};
 
+bool adc_config_average(adc_device_t *adc_device, en_adc_avcnt_t avgCount)
+{
+    if(ADC_ConfigAvg(adc_device->adc.register_base, avgCount) == 0)
+    {
+        LOG_INFO("ADC average config %d", avgCount);
+        return true;
+    }
+    LOG_ERROR("ADC average config failed");
+    return false;
+}
+
+bool adc_add_average_channel(adc_device_t *adc_device, uint32_t channel)
+{
+    if(ADC_AddAvgChannel(adc_device->adc.register_base, channel) == 0)
+    {
+        LOG_INFO("ADC add average channel %d", channel);
+        return true;
+    }
+    LOG_ERROR("ADC add average channel failed");
+    return false;
+}
+
 void adcInit()
 {
     adc_device_init(&ADC1_device);
@@ -30,7 +56,7 @@ void AdcPolling()
 {
     if (!online_devices.adc)
     {
-        Serial.printf("ADC is not initialized\n");
+        LOG_ERROR("ADC is not initialized");
         return;
     }
     uint16_t u16AdcValue = 0;
@@ -56,14 +82,14 @@ void AdcPolling()
             PowerKeyTrigger = 0;
         voltage = ADC_CAL_VOL(u16AdcValue);
 #if 0
-        Serial.printf("ADC value: %d\n", u16AdcValue);
-        Serial.printf("Voltage: %d mV\n", voltage);
-        Serial.printf("PowerKeyTrigger: %d\n", PowerKeyTrigger);
+        LOG_INFO("ADC value: %d", u16AdcValue);
+        LOG_INFO("Voltage: %d mV", voltage);
+        LOG_INFO("PowerKeyTrigger: %d", PowerKeyTrigger);
 #endif
     }
     else
     {
-        Serial.printf("ADC timeout\n");
+        LOG_ERROR("ADC timeout\n");
     }
 }
 
@@ -88,7 +114,7 @@ void WatchdogFeed()
 {
     if (!online_devices.watchDog)
     {
-        Serial.printf("Watchdog is not initialized\n");
+        LOG_ERROR("Watchdog is not initialized\n");
         return;
     }
     static unsigned char value = 0;
@@ -107,8 +133,8 @@ void WatchdogFeed()
 void PowerControlInit()
 {
     adcInit();
-    Power_Control_Pin_Init();
-    WatchdogFeedPinInit();
+    // Power_Control_Pin_Init();
+    // WatchdogFeedPinInit();
 }
 
 void PowerControlTask()

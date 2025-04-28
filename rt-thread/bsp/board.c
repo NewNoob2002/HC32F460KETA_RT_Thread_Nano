@@ -16,13 +16,6 @@
 #include "usart.h"
 #include "debug.h"
 
-// check for possibly reoccuring faults:
-#define CHECK_RSTCAUSE(cause, msg) \
-    if (cause == Set) {            \
-        RMU_ClrResetFlag();        \
-        LOG_DEBUG(msg);           \
-    }
-
 static void sysTick_Init(void);
 static void SysClkConfig(void);
 char rt_hw_console_getchar(void);
@@ -97,19 +90,6 @@ RT_WEAK void *rt_heap_end_get(void)
 }
 #endif
 
-static void check_resetCause()
-{
-    // get reset cause
-    stc_rmu_rstcause_t cause;
-    RMU_GetResetCause(&cause);
-
-    // - XTAL error, could be caused by a invalid XTAL config or a bad circuit
-    CHECK_RSTCAUSE(cause.enXtalErr, "XTAL error, check XTAL config and circuit");
-    // - Hardware Reset
-    CHECK_RSTCAUSE(cause.enRstPin, "Reset pin reset");
-    // Software reset
-    CHECK_RSTCAUSE(cause.enSoftware, "Software reset");
-}
 void core_init()
 {
     SysClkConfig();
@@ -123,7 +103,6 @@ void rt_hw_board_init()
     /* Call components board initial (use INIT_BOARD_EXPORT()) */
     core_init();
     DebugUsartInit();
-    check_resetCause();
     LOG_INFO("MCU_TYPE: HC32F460 \nSystemCoreClock : %d Mhz", SystemCoreClock / 1000000);
     /* Call components board initial (use INIT_BOARD_EXPORT()) */
 #ifdef RT_USING_COMPONENTS_INIT

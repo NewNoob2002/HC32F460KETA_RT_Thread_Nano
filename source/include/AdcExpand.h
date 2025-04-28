@@ -6,17 +6,9 @@
 #define _ADC_LIB_H_
 
 #include <Arduino.h>
-#include "settings.h"
 
-bool adc_config_average(adc_device_t *adc_device, en_adc_avcnt_t avgCount)
-{
-    return ADC_ConfigAvg(adc_device->adc.register_base, avgCount);
-}
-
-bool adc_add_average_channel(adc_device_t *adc_device, uint32_t channel)
-{
-    return ADC_AddAvgChannel(adc_device->adc.register_base, channel);
-}
+bool adc_config_average(adc_device_t *adc_device, en_adc_avcnt_t avgCount);
+bool adc_add_average_channel(adc_device_t *adc_device, uint32_t channel);
 
 
 

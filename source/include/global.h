@@ -1,7 +1,9 @@
 #pragma once
 
-#include "debug.h"
+#include <rtthread.h>
+#include <rthw.h>
 
+#include "debug.h"
 #include "Charger.h"
 #include "Fuelgauge.h"
 #include "Key.h"

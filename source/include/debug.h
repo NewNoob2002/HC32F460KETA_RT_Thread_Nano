@@ -11,7 +11,7 @@
 #define LOG_COLOR_ERROR "\033[31m"
 #define LOG_COLOR_END "\033[0m"
 
-#define LOG_LEVEL LOG_LEVEL_INFO
+#define LOG_LEVEL LOG_LEVEL_DEBUG
 
 #define LOG_DEBUG(fmt, args...) if(LOG_LEVEL_DEBUG >= LOG_LEVEL) rt_kprintf(LOG_COLOR_DEBUG "[DEBUG] " fmt LOG_COLOR_END "\n", ##args)
 #define LOG_INFO(fmt, args...) if(LOG_LEVEL_INFO >= LOG_LEVEL) rt_kprintf(LOG_COLOR_INFO "[INFO] " fmt LOG_COLOR_END "\n", ##args)

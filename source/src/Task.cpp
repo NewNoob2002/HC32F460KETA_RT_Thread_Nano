@@ -1,8 +1,8 @@
 #include "settings.h"
 #include "global.h"
-//owner header
+// owner header
 #include "Task.h"
-
+#include "system.h"
 static uint32_t lastCheckChargerOnlineTime   = 0;
 static uint32_t lastCheckFuelGaugeOnlineTime = 0;
 
@@ -123,15 +123,21 @@ void BatteryCheckTask()
 // }
 static struct rt_thread led_thread;
 ALIGN(RT_ALIGN_SIZE)
-static rt_uint8_t rt_led_thread_stack[1024];
+static rt_uint8_t rt_led_thread_stack[512];
 static void led_thread_entry(void *para);
 static rt_uint8_t led_thread_priority = 6;
 
 static struct rt_thread key_thread;
 ALIGN(RT_ALIGN_SIZE)
-static rt_uint8_t rt_key_thread_stack[1024];
+static rt_uint8_t rt_key_thread_stack[512];
 static void key_thread_entry(void *para);
 static rt_uint8_t key_thread_priority = 6;
+
+static struct rt_thread powerControl_thread;
+ALIGN(RT_ALIGN_SIZE)
+static rt_uint8_t rt_powerControl_thread_stack[1024];
+static void powerControl_thread_entry(void *para);
+static rt_uint8_t powerControl_thread_priority = 6;
 
 void user_task_init()
 {
@@ -151,8 +157,17 @@ void user_task_init()
                    sizeof(rt_key_thread_stack),
                    key_thread_priority,
                    100);
+    rt_thread_init(&powerControl_thread,
+                   "powerControl_thread",
+                   powerControl_thread_entry,
+                   RT_NULL,
+                   &rt_powerControl_thread_stack,
+                   sizeof(rt_powerControl_thread_stack),
+                   powerControl_thread_priority,
+                   100);
     rt_thread_startup(&led_thread);
     rt_thread_startup(&key_thread);
+    rt_thread_startup(&powerControl_thread);
 }
 
 static void led_thread_entry(void *para)
@@ -160,7 +175,7 @@ static void led_thread_entry(void *para)
     LOG_INFO("Entry %s", __func__);
     while (1) {
         ledStatusUpdate();
-        rt_thread_mdelay(100);
+        rt_thread_mdelay(50);
     }
 }
 
@@ -170,5 +185,36 @@ static void key_thread_entry(void *para)
     while (1) {
         keyScan();
         rt_thread_mdelay(10);
+    }
+}
+
+static void powerControl_thread_entry(void *para)
+{
+    while (1) {
+        if (PowerKeyTrigger >= 5) {
+            functionKeyLedOn();
+            DisplayPannelParameter.poweroff_flag = 1;
+        }
+        if ((PowerKeyTrigger >= 6) || (PowerOffFlag)) {
+            PowerKeyTrigger = 0;
+            powerLedOff();
+            functionKeyLedOff();
+            USB_Switch_GPIO_Control(1);
+
+            if (8 == PowerOffFlag)
+                rt_thread_mdelay(2000);
+
+            Power_Control_Pin_Switch(0);
+            /// USB_Switch_GPIO_Control(1);
+            while (1) {
+                rt_thread_mdelay(300);
+                ChargeingStateCheck();
+                if (PowerKeyTrigger >= 6) {
+                    NVIC_SystemReset();
+                }
+            }
+        }
+        AdcPolling();
+        rt_thread_mdelay(1000);
     }
 }
